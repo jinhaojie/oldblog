@@ -2,10 +2,7 @@ title: Brume
 author: Aigars Dzerviniks
 description: It's simple. It's easy to use. It's a Jekyll theme.
 
-markdown: kramdown
-kramdown:
-  input:  GFM
-  use_coderay: true
+markdown:  KramdownPygments
 permalink: /:title
 
 url:
