@@ -3,7 +3,9 @@ author: Aigars Dzerviniks
 description: It's simple. It's easy to use. It's a Jekyll theme.
 
 markdown:  kramdown
+highlight: null
 permalink: /:title
+
 
 url:
 baseurl:
@@ -15,4 +17,3 @@ sass:
   sass_dir: public/css
   style: :compressed
 
-plugins:     ./_plugins
