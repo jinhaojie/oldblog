@@ -11,11 +11,11 @@ title: java -- mysql Basics(基础篇)
 * [proxy (代理)](#proxy)
 
 <h5 id="introduction">introduction（简介）</h5> 
-    
- ```
+
+```
     mysql: open-source relational database 
     mysql是一个开源的关系型数据库。用c和c++实现。
- ```
+```
         
 <h5 id="installAndUsage">install and usage (mysql的安装和使用) </h5> 
     
@@ -26,10 +26,10 @@ title: java -- mysql Basics(基础篇)
      码)：
    2>mysql的安装目录:  /usr/local/mysql-5,7…..
    3>将bin目录加入环境变量: export PATH=$PATH:/usr/local/my**/bin
-   4>修改密码：  mysqladmin  -u root -p password
-               输入临时密码－》输入新密码
-   5>登陆：mysql -uroot -psecret   -Ddb -A    (说明：-D指定数据库,-A)
-   6>退出 : exit;  | quit；
+   4>修改密码：mysqladmin  -u root -p password
+             输入临时密码－》输入新密码
+   5>登陆：mysql -uroot -psecret -Ddb -A (说明：-D指定数据库,-A)
+   6>退出 : exit; | quit；
    --------------------------------------------------------------------
    
    usage:
@@ -38,13 +38,13 @@ title: java -- mysql Basics(基础篇)
      show create table user;   // 显示创建表的sql
      show create database db_name;
      show columns from user;   |   desc user;     // 显示user表的列
-     edit  //进入编辑模式，编写执行的sql脚本
+     edit //进入编辑模式，编写执行的sql脚本
      show engines;  // 显示可用的存储引擎
      show databases; // 显示数据库
      show tables; // 显示所有表
      show tables from db_name
-     show   index from table //显示表的索引
-     show  columns from table like ‘c%’   //显示表中以c开头的列
+     show index from table //显示表的索引
+     show columns from table like ‘c%’   //显示表中以c开头的列
      show tables like ‘c%’ // 显示表名是以c开头的表
      show tables like ’tableName’ //判断表是否存在
      select count(*)from table //在MyIsam中没有where的count(*)语句得到了优化,       
