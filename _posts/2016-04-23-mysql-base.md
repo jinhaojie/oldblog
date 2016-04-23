@@ -1,11 +1,11 @@
 ---
 layout: post
-title: java -- mysql Basics(基础篇)
+title: mysql --  Basics(基础篇)
 ---
 #### 目录
 * [introduction (简介)](#introduction) 
 * [install and usage (mysql的安装和使用)](#installAndUsage)
-* [new 和 newInstance](#newAndnewInstance)
+* [engine (引擎)](#engine)
 * [String、StringBuffer、StringBuilder](#String)
 * [inner class (内部类)](#innerClass)
 * [proxy (代理)](#proxy)
@@ -57,26 +57,38 @@ title: java -- mysql Basics(基础篇)
    
 ```
 
-<h5 id="newAndnewInstance">new 和 newInstance </h5> 
+<h5 id="engine">engine （引擎） </h5> 
 
 ```
-    简述:
+    简述:mysql支持多种数据库引擎
+    1.innoDB  : 支持事务和回滚，拥有行级所
+    2.myismy
     
-    new : 使用构造函数实例化对象，弱类型。低效率。只能调用无参构造
-    newInstance :使用类加载机实例化对象。强类型。相对高效。能调用任何public构造。
-    ------------------------------------------------------------------
+    区别
     
-    newInstance实现IOC、反射、依赖倒置 等技术方法的必然选择
-        Class c = Class.forName(“A”);
-        factory = (AInterface)c.newInstance();
+    MYISAM:
+
+    MYISAM supports Table-level Locking
+    MyISAM designed for need of speed
+    MyISAM does not support foreign keys hence we call MySQL with MYISAM 
+           is DBMS
+    MyISAM stores its tables, data and indexes in diskspace using 
+           separate three different files. (tablename.FRM, tablename.MYD,     
+           tablename.MYI)
+    MYISAM not supports transaction. You cannot commit and rollback with 
+           MYISAM. Once you issue a command it’s done.
+    MYISAM supports fulltext searchYou can use MyISAM, if the table is 
+           more static with lots of select and less update and delete.
     
-    从jvm的角度看：
-    >使用new的时候，这个要new的类可以没有加载；
-    >使用newInstance时候，就必须保证：
-      1、这个类已经加载；
-      2、这个类已经连接了。
-      而完成上面两个步骤的正是class的静态方法forName（）方法，
-      这个静态方法调用了启动类加载器（就是加载javaAPI的那个加载器）。
+    INNODB:
+
+    InnoDB supports Row-level Locking
+    InnoDB designed for maximum performance when processing high volume 
+           of data
+    InnoDB support foreign keys hence we call MySQL with InnoDB is RDBMS
+    InnoDB stores its tables and indexes in a tablespace
+    InnoDB supports transaction. You can commit and rollback with InnoDB
+
 ```
     
 <h5 id="String">String、StringBuffer、StringBuilder</h5> 
