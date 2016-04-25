@@ -1,25 +1,38 @@
 ---
 layout: post
-title: java -- Expo Basics(基础篇)
+title: java command-- java常用命令
 ---
 #### 目录
-* [genericity (泛型)](#genericity) 
+* [jvm (jvm相关)](#jvm) 
 * [reflect (反射)](#reflect)
 * [new 和 newInstance](#newAndnewInstance)
 * [String、StringBuffer、StringBuilder](#String)
 * [inner class (内部类)](#innerClass)
 * [proxy (代理)](#proxy)
-* [Serialization (序列化)](#Serialization)
 
-<h5 id="genericity">genericity（泛型）</h5> 
+<h5 id="jvm">jvm (jvm相关)</h5> 
     
-    1.基本类型介绍
-    E - Element (在集合中使用，因为集合中存放的是元素)
-    T - Type (Java 类)
-    K - Key (键)
-    V - Value （值）
-    N - Number （数值类型）
-    ？- 表示不确定的Java类型
+    1. jmap (memroy map 内存映象图)
+       
+       -head pid :  查看jvm内存参数（permSize,等）
+       
+    2. jstat (java虚拟机静态监控工具)
+      
+       --gccapacity  pid   显示 vm内存中的三代（yound,old,perm）,如
+                           PGCMN :permsize
+                           PGCMX :maxpermsize
+                           PGC:  当前新生成的perm内存大小
+                           PC: 当前perm内存占用量
+                           
+                           
+    
+    
+    3. jps (显示执行的java进程和Pid)
+       无参： 
+       jps 显示执行的java进程和Pid
+    
+    4.jconsole (jvm图形化监控工具)
+    
         
 <h5 id="reflect">reflect (反射) </h5> 
      
@@ -234,108 +247,4 @@ title: java -- Expo Basics(基础篇)
    }
     
 ```
-
-<h5 id="Serialization">Serialization (序列化 和 反序列化)</h5>
-```
-    简述：
-       
-       序列化：就是将java对象转换成一连串字节描述的过程
-       反序列化：将一连串字节描述重建成java对象的过程
-       
-    -------------------------------------------------------------
-    例子。
-    
-    序列化：
-    
-     FileOutputStream fileOut = new FileOutputStream("/tmp/employee.ser");
-     ObjectOutputStream out = new ObjectOutputStream(fileOut);
-     out.writeObject(obj); //注意：要序列化的对象obj必须implements Serializable
-     out.close();
-     fileOut.close();
-    
-    反序列化:
-    
-     FileInputStream fileIn = new FileInputStream("/tmp/employee.ser");
-     ObjectInputStream in = new ObjectInputStream(fileIn);
-     obj = (Employee) in.readObject();
-     in.close();
-     fileIn.close();
-    -------------------------------------------------------------------------
-    
-    更通用的对象序列化 XML(使用开源类库XOM)
-    
-    public class Person {
-    private String first;
-    private String last;
-
-    public Person(String first, String last) {
-        this.first = first;
-        this.last = last;
-    }
-
-    public Person(Element person) {
-
-        first = person.getFirstChildElement("firstName").getValue();
-        last = person.getFirstChildElement("lastName").getValue();
-    }
-    public Element getXml() {
-        Element person = new Element("person");
-        Element firstName = new Element("firstName");
-        firstName.appendChild(first);
-        Element lastName = new Element("lastName");
-        lastName .appendChild(last);
-        person.appendChild(firstName);
-        person.appendChild(lastName);
-        return person;
-    }
-
-
-    public static void format(OutputStream outputStream, Document document) 
-                              throws Exception{
-        Serializer serializer = new Serializer(outputStream, "ISO-8859-1");
-        serializer.setIndent(4);
-        serializer.setMaxLength(64);
-        serializer.write(document);
-        serializer.flush();
-    }
-
-    public static void main(String[] arg) {
-
-        List<Person> people = Arrays.asList(new Person("jin", "haojie"), 
-                                            new Person("mao", "mao"));
-        Element root = new Element("people");
-
-        for (Person p : people) {
-            root.appendChild(p.getXml());
-        }
-        Document doc = new Document(root);
-        try {
-            /*序列化*/
-            format(new BufferedOutputStream(
-                              new FileOutputStream("/tmp/Person.xml")),doc);
-            /*反序列化*/
-            RetPeople rst = new RetPeople("/tmp/Person.xml");
-        }catch (Exception e) {
-            System.out.println("error");
-        }
-    }
-    }
-
-    class RetPeople extends ArrayList<Person> {
-        public RetPeople(String filename) throws Exception {
-        Document document = new Builder().build(filename);
-        Elements elements = document.getRootElement().getChildElements();
-        for (int i =0; i < elements.size(); i++) {
-            add(new Person(elements.get(i)));
-        }
-    }
-
-```
-
-
-
-
-
-
-
 
