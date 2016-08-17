@@ -3,6 +3,21 @@ author: Aigars Dzerviniks
 description: It's simple. It's easy to use. It's a Jekyll theme.
 
 markdown:  kramdown
+kramdown:
+  input: GFM
+  extensions:
+    - autolink
+    - footnotes
+    - smart
+  use_coderay: true
+  syntax_highlighter: rouge
+  coderay:
+    coderay_line_numbers:  nil
+
+
+
+
+
 highlight: null
 permalink: /:title
 
