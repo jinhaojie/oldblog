@@ -4,9 +4,9 @@
 @import 'syntax';
 
 $site-background-color: #f5f5f5;
-$contrast-color: #333;
+$contrast-color: #333;  /*黑色*/
 
-$azul-accent-color: #0070bb;
+$azul-accent-color: #0070bb; /*蓝色*/
 $ruby-accent-color: #e0115f;
 $amber-accent-color: #ff7e00;
 $avocado-accent-color: #568203;
@@ -249,7 +249,7 @@ dl,
 }
 
 /*============================================================================*/
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1000px) {
   .top-navbar {
     height: 35px;
     text-align: center;
