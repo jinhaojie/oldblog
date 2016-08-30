@@ -1,0 +1,1 @@
+mysqladmin  -u root password 'westos'   刚安装的mysql是没有密码的，此命令设置密码.
